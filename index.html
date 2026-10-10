@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#7357ff">
+  <meta name="description" content="Learn English vocabulary through fun mini-games.">
+  <title>WordQuest — English Vocabulary Game</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="WordQuest home">
+        <span class="brand-mark">W!</span>
+        <span><strong>WordQuest</strong><small>ENGLISH ADVENTURE</small></span>
+      </a>
+      <div class="top-stats">
+        <span class="pill streak">🔥 <b id="streak">0</b> streak</span>
+        <span class="pill points">⭐ <b id="total-points">0</b> XP</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">YOUR DAILY ENGLISH QUEST</span>
+          <h1>Learn words.<br><span>Unlock your world.</span></h1>
+          <p>Play quick games, collect stars, and grow your English vocabulary one word at a time.</p>
+          <button class="primary-btn" id="start-btn">Let’s play <span>→</span></button>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="sunburst"></div><div class="float-card card-one">🍕<small>FOOD</small></div>
+          <div class="float-card card-two">🧑‍🚒<small>JOBS</small></div>
+          <div class="mascot">🦊</div><div class="spark spark-a">✦</div><div class="spark spark-b">✧</div>
+        </div>
+      </section>
+
+      <section class="section-heading">
+        <div><span class="eyebrow">CHOOSE YOUR CHALLENGE</span><h2>Mini-games</h2></div>
+        <span class="level-tag">LEVEL 1 · BEGINNER</span>
+      </section>
+
+      <section class="game-grid" aria-label="Mini games">
+        <button class="game-card purple" data-game="quiz">
+          <span class="game-icon">🧠</span><span class="game-label">01 / QUICK QUIZ</span>
+          <strong>Pick the meaning</strong><span class="game-desc">Choose the correct translation.</span><span class="card-arrow">↗</span>
+        </button>
+        <button class="game-card orange" data-game="spell">
+          <span class="game-icon">🔤</span><span class="game-label">02 / SPELL IT</span>
+          <strong>Spell the word</strong><span class="game-desc">Put the letters in order.</span><span class="card-arrow">↗</span>
+        </button>
+        <button class="game-card green" data-game="sentence">
+          <span class="game-icon">💬</span><span class="game-label">03 / SENTENCE LAB</span>
+          <strong>Make a sentence</strong><span class="game-desc">Use a new word in English.</span><span class="card-arrow">↗</span>
+        </button>
+        <button class="game-card pink" data-game="picture">
+          <span class="game-icon">🖼️</span><span class="game-label">04 / PICTURE CLUE</span>
+          <strong>Describe the picture</strong><span class="game-desc">Match an emoji with its word.</span><span class="card-arrow">↗</span>
+        </button>
+        <button class="game-card blue" data-game="translate">
+          <span class="game-icon">🌎</span><span class="game-label">05 / TRANSLATE</span>
+          <strong>Translate it</strong><span class="game-desc">Turn Spanish into English.</span><span class="card-arrow">↗</span>
+        </button>
+        <button class="game-card yellow" data-game="vocabulary">
+          <span class="game-icon">📚</span><span class="game-label">06 / WORD DECK</span>
+          <strong>Vocabulary deck</strong><span class="game-desc">Review all 24 words and meanings.</span><span class="card-arrow">↗</span>
+        </button>
+      </section>
+
+      <section class="bottom-grid">
+        <div class="panel vocab-panel">
+          <div class="panel-heading"><div><span class="eyebrow">BUILD YOUR WORD BANK</span><h2>Vocabulary themes</h2></div><span class="word-count">24 WORDS</span></div>
+          <div class="theme-row">
+            <div class="theme-icon food-icon">🍓</div><div class="theme-info"><strong>Food & Drinks</strong><small>8 useful words</small><div class="progress"><span style="width:42%"></span></div></div><span class="theme-emoji">🥑</span>
+          </div>
+          <div class="theme-row">
+            <div class="theme-icon jobs-icon">🧑‍🍳</div><div class="theme-info"><strong>Jobs</strong><small>8 useful words</small><div class="progress"><span style="width:25%"></span></div></div><span class="theme-emoji">🩺</span>
+          </div>
+          <div class="theme-row">
+            <div class="theme-icon places-icon">🏙️</div><div class="theme-info"><strong>Places</strong><small>8 useful words</small><div class="progress"><span style="width:15%"></span></div></div><span class="theme-emoji">🏖️</span>
+          </div>
+        </div>
+        <div class="panel challenge-panel">
+          <span class="eyebrow">TODAY’S MISSION</span><div class="mission-icon">🏆</div><h2>Word explorer</h2>
+          <p>Play 3 mini-games and earn your first 30 XP.</p>
+          <div class="mission-progress"><span id="mission-progress"></span></div><small id="mission-status">0 of 3 games completed</small>
+          <button class="secondary-btn" id="mission-btn">Accept mission →</button>
+        </div>
+      </section>
+      <footer><span>WordQuest · My Own English Vocabulary Game</span><span>Learn by playing ✨</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop hidden" id="game-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="game-modal">
+      <button class="close-btn" id="close-modal" aria-label="Close game">×</button>
+      <div class="modal-top"><span class="eyebrow" id="modal-kicker">MINI-GAME</span><span class="pill points">⭐ <b id="modal-xp">0</b> XP</span></div>
+      <h2 id="modal-title">Quick Quiz</h2>
+      <p class="modal-instructions" id="modal-instructions">Choose the correct answer.</p>
+      <div id="game-content"></div>
+      <div id="feedback" class="feedback" aria-live="polite"></div>
+      <div class="modal-actions"><button class="secondary-btn" id="skip-btn">Skip word</button><button class="primary-btn" id="next-btn" disabled>Next →</button></div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
