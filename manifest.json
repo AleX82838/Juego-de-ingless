@@ -1,0 +1,18 @@
+{
+  "name": "WordQuest — English Vocabulary Game",
+  "short_name": "WordQuest",
+  "description": "Learn English vocabulary through fun mini-games.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff9e7",
+  "theme_color": "#b4873d",
+  "icons": [
+    {
+      "src": "icon.PNG",
+      "type": "image/png",
+      "sizes": "2048x2048",
+      "purpose": "any maskable"
+    }
+  ]
+}
