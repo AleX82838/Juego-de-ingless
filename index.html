@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#20c8ed">
+  <meta name="description" content="FLYNGLISH: aprende inglés jugando, hablando y avanzando por niveles.">
+
+  <title>FLYNGLISH — Aprende inglés jugando</title>
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="icon" href="icon.PNG" type="image/png">
+</head>
+
+<body>
+  <div class="app-shell" id="inicio">
+
+    <header class="topbar">
+      <a class="brand" href="#inicio" aria-label="FLYNGLISH inicio">
+        <img class="brand-logo" src="icon.PNG" alt="FLYNGLISH">
+        <span>
+          <strong>FLYNGLISH</strong>
+          <small>APRENDE JUGANDO</small>
+        </span>
+      </a>
+
+      <div class="menu-wrap">
+        <button
+          class="menu-toggle"
+          id="menu-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="main-menu"
+        >
+          <span class="menu-title">MENÚ</span>
+          <span class="menu-bar" aria-hidden="true"></span>
+        </button>
+
+        <nav class="glass-menu" id="main-menu" aria-label="Menú principal">
+          <a href="#perfil">Mi perfil</a>
+          <a href="#ajustes">Ajustes</a>
+          <a href="#sistema">Sistema</a>
+        </nav>
+      </div>
+
+      <div class="header-mascot" aria-hidden="true">🐳</div>
+
+      <div class="top-stats">
+        <span class="pill streak">🔥 <b id="streak">0</b></span>
+        <span class="pill points">
+          <span class="xp-icon">⭐</span>
+          <b id="total-points">0</b> XP
+        </span>
+      </div>
+    </header>
+
+    <main>
+      <section class="weekly-panel" aria-labelledby="weekly-title">
+        <div class="weekly-top">
+          <h1 id="weekly-title">WEEKLY STREAK</h1>
+          <span class="weekly-total">
+            <b id="weekly-count">0</b> días esta semana
+          </span>
+        </div>
+
+        <div class="weekly-content">
+          <div
+            class="week-days"
+            id="week-days"
+            aria-label="Actividad de esta semana"
+          ></div>
+
+          <div class="weekly-mission">
+            <p>Completa una misión<br>para activar la racha 🔥</p>
+            <button class="mission-start" id="start-btn" type="button">
+              EMPEZAR RETO
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="experience-row" aria-label="Progreso de nivel">
+        <strong id="level-current">NIVEL 0</strong>
+
+        <div class="experience-track">
+          <span id="experience-fill"></span>
+          <b id="experience-label">0% EXPERIENCIA</b>
+        </div>
+
+        <strong class="next-level">
+          → <span id="next-level">BÁSICO</span>
+        </strong>
+      </section>
+
+      <section class="games-section" aria-labelledby="games-title">
+        <div class="section-heading route-heading">
+          <div>
+            <span class="eyebrow">AVANZA PASO A PASO</span>
+            <h2 id="games-title">Tu ruta de aprendizaje</h2>
+          </div>
+
+          <label class="level-picker">
+            <span>Nivel</span>
+            <select id="level-select" aria-label="Selecciona tu nivel">
+              <option value="zero">Nivel 0</option>
+              <option value="basic">Básico</option>
+              <option value="intermediate">Intermedio</option>
+              <option value="professional">Profesional</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- TARJETAS DE JUEGOS CON IMÁGENES PERSONALIZADAS -->
+        <div class="game-grid new-game-grid" aria-label="Juegos">
+
+          <!-- JUEGO 01: MEMORAMA -->
+          <button
+            class="game-card game-memory"
+            data-game="memory"
+            type="button"
+          >
+            
+
+            <img
+              class="game-art-image"
+              src="images/memorama.png"
+              alt="Imagen del juego Memory Game o memorama"
+              data-game-art="memorama"
+              loading="lazy"
+            >
+
+            <strong>MEMORY GAME</strong>
+            <span class="game-name-es">MEMORAMA</span>
+          </button>
+
+          <!-- JUEGO 02: SERPIENTES Y ESCALERAS -->
+          <button
+            class="game-card game-snakes"
+            data-game="snakes"
+            type="button"
+          >
+            
+
+            <img
+              class="game-art-image"
+              src="images/serpientes-escaleras.png"
+              alt="Imagen del juego Snakes and Ladders"
+              data-game-art="serpientes"
+              loading="lazy"
+            >
+
+            <strong>SNAKES &amp; LADDERS</strong>
+            <span class="game-name-es">SERPIENTES &amp; ESCALERAS</span>
+          </button>
+
+          <!-- JUEGO 03: TABLA DE RETOS -->
+          <button
+            class="game-card game-challenges"
+            data-game="challenges"
+            type="button"
+          >
+            
+
+            <img
+              class="game-art-image"
+              src="images/tabla-de-retos.png"
+              alt="Imagen del juego Challenge Table o tabla de retos"
+              data-game-art="retos"
+              loading="lazy"
+            >
+
+            <strong>CHALLENGE TABLE</strong>
+            <span class="game-name-es">TABLA DE RETOS</span>
+          </button>
+
+        </div>
+      </section>
+
+      <section class="bottom-grid profile-settings">
+
+        <div class="panel profile-panel" id="perfil">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">MI PERFIL</span>
+              <h2>Tu progreso</h2>
+            </div>
+
+            <span class="word-count">
+              <b id="completed-count">0</b> RETOS
+            </span>
+          </div>
+
+          <div class="progress-summary">
+            <span class="progress-medal">🏅</span>
+
+            <div>
+              <strong id="progress-title">Tu primera frase te espera</strong>
+              <small id="progress-description">
+                Completa un reto hablando para empezar a sumar XP.
+              </small>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span id="progress-fill" style="width:0%"></span>
+          </div>
+
+          <small class="progress-caption" id="progress-caption">
+            0 de 10 retos completados
+          </small>
+        </div>
+
+        <div class="panel settings-panel" id="ajustes">
+          <div class="panel-heading">
+            <div>
+              <span class="eyebrow">AJUSTES</span>
+              <h2>Modo de juego</h2>
+            </div>
+          </div>
+
+          <div class="mode-options" role="group" aria-label="Modo de juego">
+            <button
+              class="mode-btn selected"
+              data-mode="solo"
+              aria-pressed="true"
+            >
+              👤 Una persona
+            </button>
+
+            <button
+              class="mode-btn"
+              data-mode="duo"
+              aria-pressed="false"
+            >
+              👥 Dos jugadores
+            </button>
+          </div>
+
+          <div class="player-names hidden" id="player-names">
+            <label>
+              Jugador 1
+              <input
+                id="player-one-name"
+                maxlength="18"
+                value="Jugador 1"
+                autocomplete="off"
+              >
+            </label>
+
+            <label>
+              Jugador 2
+              <input
+                id="player-two-name"
+                maxlength="18"
+                value="Jugador 2"
+                autocomplete="off"
+              >
+            </label>
+          </div>
+        </div>
+
+      </section>
+
+      <footer id="sistema">
+        <span>FLYNGLISH · Aprende inglés jugando</span>
+        <span>Escucha · Habla · Avanza ✨</span>
+      </footer>
+    </main>
+  </div>
+
+  <!-- VENTANA DE LOS MINIJUEGOS -->
+  <div
+    class="modal-backdrop hidden"
+    id="game-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+    <div class="game-modal">
+
+      <button class="close-btn" id="close-modal" aria-label="Cerrar juego">
+        ×
+      </button>
+
+      <div class="modal-top">
+        <span class="eyebrow" id="modal-kicker">FLYNGLISH</span>
+
+        <span class="pill points">
+          <span class="xp-icon">⭐</span>
+          <b id="modal-xp">0</b> XP
+        </span>
+      </div>
+
+      <h2 id="modal-title">Jugar</h2>
+
+      <p class="modal-instructions" id="modal-instructions"></p>
+
+      <div class="turn-banner hidden" id="turn-banner" aria-live="polite"></div>
+
+      <div id="game-content"></div>
+
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+
+      <div class="modal-actions">
+        <button class="secondary-btn" id="skip-btn" type="button">
+          Cerrar
+        </button>
+
+        <button class="primary-btn" id="next-btn" type="button" disabled>
+          Continuar →
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="app.js?v=8" defer></script>
+</body>
+</html>
