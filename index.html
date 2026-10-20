@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#33c8e8">
+  <meta name="description" content="Aprende inglés hablando con juegos y retos interactivos.">
+  <title>FLYNGLISH · Aprende jugando</title>
+  <link rel="icon" type="image/png" href="icon.PNG">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css?v=16">
+</head>
+<body>
+  <div id="splash-screen" class="splash-screen" aria-label="Cargando FLYNGLISH">
+    <div class="splash-orbit orbit-one"></div><div class="splash-orbit orbit-two"></div>
+    <img src="icon.PNG" alt="Logotipo de FLYNGLISH" class="splash-logo">
+    <strong>FLYNGLISH</strong><span>Aprende jugando</span><div class="splash-loader"><i></i></div>
+  </div>
+  <audio id="intro-audio" src="audio/flynglish-intro.mp3" preload="auto"></audio>
+  <main id="auth-screen" class="auth-screen hidden">
+    <section class="auth-card">
+      <img src="icon.PNG" alt="Logotipo de FLYNGLISH" class="auth-logo">
+      <p class="eyebrow">TU AVENTURA EN INGLÉS</p><h1 id="auth-title">¡Qué gusto verte!</h1>
+      <p class="auth-subtitle">Entra para continuar aprendiendo a tu ritmo.</p>
+      <div class="auth-tabs" role="tablist"><button type="button" data-auth-mode="login" class="selected" aria-selected="true">Iniciar sesión</button><button type="button" data-auth-mode="register" aria-selected="false">Crear cuenta</button></div>
+      <form id="auth-form">
+        <label for="auth-username">Nombre de usuario</label><input id="auth-username" name="username" autocomplete="username" minlength="3" maxlength="20" required placeholder="Tu usuario">
+        <label for="auth-password">Contraseña</label><input id="auth-password" name="password" type="password" autocomplete="current-password" minlength="8" required placeholder="Mínimo 8 caracteres">
+        <div id="confirm-field" class="hidden"><label for="auth-password-confirm">Confirma tu contraseña</label><input id="auth-password-confirm" type="password" autocomplete="new-password" minlength="8" placeholder="Repite tu contraseña"></div>
+        <button id="auth-submit" class="primary-btn auth-submit" type="submit">Entrar a aprender →</button><p id="auth-feedback" class="auth-feedback" aria-live="polite"></p>
+      </form>
+      <small class="local-account-note">Tu cuenta y progreso se guardan en este dispositivo y navegador.</small>
+    </section>
+  </main>
+  <div id="main-app" class="app-shell hidden">
+    <header class="site-header">
+      <div class="header-mascot" aria-hidden="true">🐳</div>
+      <div class="header-greeting">¡Hola, <b id="user-display">jugador</b>! <span>👋</span></div>
+      <div class="header-quick-stats"><span title="Días de racha">🔥 <b id="streak">0</b></span><span title="Experiencia acumulada">⚡ <b id="total-points">0</b> XP</span></div>
+      <button id="logout-btn" class="logout-button" type="button" aria-label="Cerrar sesión">↗</button>
+    </header>
+    <main class="home-content">
+      <section class="app-view is-active" data-view="home" id="inicio">
+        <section class="daily-hero"><div class="hero-mascot-wrap"><div class="hero-speech" id="hero-message">¡Completa una misión para encender tu racha de hoy! ✨</div><div class="hero-mascot" aria-label="Mascota FLYNGLISH">🐳</div></div><div class="hero-content"><p class="eyebrow">TU MISIÓN DE HOY</p><h1>Un pequeño reto.<br>Un gran paso en inglés.</h1><div class="compact-level"><span id="level-current">NIVEL 0</span><div class="compact-track"><i id="experience-fill"></i></div><span id="experience-label">0% XP</span><b>→ <span id="next-level">BÁSICO</span></b></div><button id="start-btn" class="primary-btn hero-cta" type="button">¡EMPEZAR RETO DEL DÍA!</button></div></section>
+        <section class="quest-card" id="quest-section"><div class="section-heading"><div><p class="eyebrow">PEQUEÑOS PASOS, GRANDES LOGROS</p><h2>Misiones diarias</h2></div><span id="quest-date-label"></span></div><div class="quest-list" id="daily-quests"></div><div class="quest-confetti" id="quest-confetti" aria-hidden="true"></div></section>
+        <section class="games-section" id="juegos"><div class="section-heading"><div><p class="eyebrow">PRACTICA JUGANDO</p><h2>Elige tu juego</h2></div><span>Habla, juega y gana XP ✨</span></div><div class="games-grid">
+        <button class="game-card memory-game" data-game="memory" data-badge="+15 XP"><span class="game-art-placeholder" data-game-art="memory">🃏</span><span class="game-title">MEMORY GAME</span><small>MEMORAMA</small></button>
+        <button class="game-card snakes-game" data-game="snakes" data-badge="Popular 🔥"><span class="game-art-placeholder" data-game-art="snakes">🐍🎲</span><span class="game-title">SNAKES &amp; LADDERS</span><small>SERPIENTES Y ESCALERAS</small></button>
+        <button class="game-card challenge-game" data-game="challenges"><span class="game-art-placeholder" data-game-art="challenges">🏆</span><span class="game-title">CHALLENGE TABLE</span><small>TABLA DE RETOS</small></button>
+        <button class="game-card domino-game" data-game="domino"><span class="game-art-placeholder" data-game-art="domino">🁣</span><span class="game-title">VOCABULARY DOMINOES</span><small>DOMINÓ BILINGÜE</small></button>
+        </div></section>
+      </section>
+      <section class="app-view" data-view="missions" id="misiones"><div class="page-heading"><p class="eyebrow">TU CAMINO DE APRENDIZAJE</p><h1>Misiones y logros</h1><p>Avanza con pasos cortos y celebra cada práctica.</p></div><section class="quest-card"><div class="section-heading"><div><p class="eyebrow">HOY</p><h2>Misiones diarias</h2></div></div><div class="quest-list" id="daily-quests-detail"></div></section><section class="quest-card weekly-missions"><div class="section-heading"><div><p class="eyebrow">CONSTANCIA</p><h2>Tu semana de práctica</h2></div><span><b id="weekly-count">0</b> / 7 días</span></div><div id="week-days" class="week-days week-row"></div><div class="achievement-row"><span class="achievement-icon">🏅</span><div><b>Primera conversación</b><small id="achievement-progress">Practica tu primera frase en voz alta</small></div><span id="achievement-check">🔒</span></div></section></section>
+      <section class="app-view" data-view="progress" id="progreso"><div class="page-heading"><p class="eyebrow">CADA RETO CUENTA</p><h1>Tu progreso</h1><p>Tu esfuerzo de hoy construye tu confianza de mañana.</p></div><section class="progress-overview"><div class="progress-stat"><span>⚡</span><b id="progress-xp">0</b><small>XP acumulados</small></div><div class="progress-stat"><span>🎯</span><b id="completed-count">0</b><small>retos completados</small></div><div class="progress-stat"><span>🔥</span><b id="progress-streak">0</b><small>días de racha</small></div></section><section class="quest-card learning-row" id="perfil"><div class="learning-label">AVANZA<br>PASO A PASO</div><div class="learning-summary"><h2 id="progress-title">Tu ruta de aprendizaje</h2><p id="progress-description">Completa un reto hablando para empezar a sumar XP.</p><div class="profile-progress"><i id="progress-fill"></i></div><small id="progress-caption">0 de 10 retos completados</small></div></section></section>
+      <section class="app-view" data-view="settings" id="ajustes"><div class="page-heading"><p class="eyebrow">A TU RITMO</p><h1>Ajustes</h1><p>Personaliza la dificultad y el modo de juego.</p></div><section class="settings-panel"><div><p class="eyebrow">PERSONALIZA TU PRÁCTICA</p><h2>Elige tu nivel y modo</h2></div><label class="level-control">Nivel de aprendizaje<select id="level-select"><option value="zero">Nivel 0 · Desde cero</option><option value="basic">Básico</option><option value="intermediate">Intermedio</option><option value="professional">Profesional</option></select></label><div class="mode-control"><button data-mode="solo" class="selected" aria-pressed="true">1 jugador</button><button data-mode="duo" aria-pressed="false">2 jugadores</button></div><div id="player-names" class="player-names hidden"><input id="player-one-name" value="Jugador 1" aria-label="Nombre del jugador 1"><input id="player-two-name" value="Jugador 2" aria-label="Nombre del jugador 2"></div></section><section class="quest-card settings-note"><b>Tu aprendizaje, siempre contigo</b><p>Tu progreso se guarda en este dispositivo y navegador.</p><button id="logout-settings" class="secondary-btn" type="button">Cerrar sesión</button></section></section>
+    </main>
+    <nav class="bottom-nav" aria-label="Navegación principal"><button class="bottom-nav-item is-active" data-tab="home" aria-current="page"><span>🏠</span><small>Inicio</small></button><button class="bottom-nav-item" data-tab="missions"><span>🎯</span><small>Misiones</small></button><button class="bottom-nav-item" data-tab="progress"><span>📊</span><small>Progreso</small></button><button class="bottom-nav-item" data-tab="settings"><span>⚙️</span><small>Ajustes</small></button></nav>
+  </div>
+  <div id="game-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title"><section class="game-modal"><header class="modal-header"><div><p id="modal-kicker" class="eyebrow">JUEGO</p><h2 id="modal-title">Juego</h2></div><button id="close-modal" class="modal-close" aria-label="Cerrar">×</button></header><p id="modal-instructions" class="modal-instructions"></p><div id="game-levels" class="game-levels" aria-label="Nivel de este juego"></div><div id="turn-banner" class="turn-banner hidden"></div><div id="game-content"></div><div id="feedback" class="feedback" aria-live="polite"></div><footer class="modal-actions"><span>XP: <b id="modal-xp">0</b></span><div><button id="skip-btn" class="secondary-btn">Salir</button><button id="next-btn" class="primary-btn" disabled>Continuar →</button></div></footer></section></div>
+  <!--
+    Audio de juegos: añade src="audio/games/<juego>/<archivo>.mp3" a cada etiqueta.
+    Música sugerida: music.mp3 (loop). Efectos sugeridos: correct.mp3, incorrect.mp3, win.mp3.
+    Carpetas: memory, snakes, challenges y domino. Los sonidos aún no se reproducen si src está vacío.
+  -->
+  <audio id="audio-memory-music" data-game-audio="memory-music" loop preload="none"></audio><audio id="audio-memory-correct" data-game-audio="memory-correct" preload="none"></audio><audio id="audio-memory-incorrect" data-game-audio="memory-incorrect" preload="none"></audio><audio id="audio-memory-win" data-game-audio="memory-win" preload="none"></audio>
+  <audio id="audio-snakes-music" data-game-audio="snakes-music" src="audio/games/snakes/musicserpienteyescalera.mp3" loop preload="none"></audio><audio id="audio-snakes-correct" data-game-audio="snakes-correct" preload="none"></audio><audio id="audio-snakes-incorrect" data-game-audio="snakes-incorrect" preload="none"></audio><audio id="audio-snakes-win" data-game-audio="snakes-win" preload="none"></audio>
+  <audio id="audio-challenges-music" data-game-audio="challenges-music" loop preload="none"></audio><audio id="audio-challenges-correct" data-game-audio="challenges-correct" preload="none"></audio><audio id="audio-challenges-incorrect" data-game-audio="challenges-incorrect" preload="none"></audio><audio id="audio-challenges-win" data-game-audio="challenges-win" preload="none"></audio>
+  <audio id="audio-domino-music" data-game-audio="domino-music" src="audio/games/domino/musicdomino.mp3" loop preload="none"></audio><audio id="audio-domino-correct" data-game-audio="domino-correct" preload="none"></audio><audio id="audio-domino-incorrect" data-game-audio="domino-incorrect" preload="none"></audio><audio id="audio-domino-win" data-game-audio="domino-win" preload="none"></audio>
+  <script src="app.js?v=16" defer></script>
+</body>
+</html>
